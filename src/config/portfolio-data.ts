@@ -1,12 +1,13 @@
 
 import type { Project, Experience, Education } from '@/types';
 
+
 export const projectsData: Project[] = [
   {
     id: '1',
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce website with features like product catalog, shopping cart, user authentication, and order processing. Built with a focus on scalability and user experience.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    title: 'personal financial management',
+    description: 'prototype multi-platform web-based personal finance management application, designed to demonstrate real-time flow of dummy data with a modular and adaptive approach responsive',
+    imageUrl: 'src/assets/images/Dashboard.PNG',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Stripe API'],
     liveLink: '#',
     repoLink: '#',
@@ -16,7 +17,7 @@ export const projectsData: Project[] = [
     id: '2',
     title: 'Task Management App',
     description: 'A responsive task management application to help users organize their daily tasks, set priorities, and track progress. Includes features like drag-and-drop functionality and deadline reminders.',
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'src/assets/images/homepage.PNG',
     technologies: ['React', 'Firebase', 'Material UI', ' Zustand'],
     liveLink: '#',
     repoLink: '#',
