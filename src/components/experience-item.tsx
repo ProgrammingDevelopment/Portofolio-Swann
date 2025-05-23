@@ -52,7 +52,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         </div>
         {experience.achievements && experience.achievements.length > 0 && (
           <div>
-            <h4 className="font-semibold text-foreground/90 mb-2">Key Achievements:</h4>
+            <h4 className="font-semibold text-foreground/90 mb-2">Achievements:</h4>
             <ul className="space-y-1.5 text-sm text-foreground/80">
               {experience.achievements.map((ach, index) => (
                 <li key={index} className="flex items-start">

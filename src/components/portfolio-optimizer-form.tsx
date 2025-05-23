@@ -84,7 +84,7 @@ export function PortfolioOptimizerForm() {
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Optimizing...
+                Optimize...
               </>
             ) : (
               'Get Suggestions'
@@ -95,7 +95,7 @@ export function PortfolioOptimizerForm() {
 
       {suggestions && suggestions.suggestions && (
         <div className="p-6 border-t">
-          <h3 className="text-lg font-semibold mb-3 text-primary">Suggestions:</h3>
+          <h3 className="text-lg font-semibold mb-3 text-primary">Summary:</h3>
           <div className="prose prose-sm max-w-none bg-secondary/30 p-4 rounded-md text-foreground/90 whitespace-pre-wrap">
             {suggestions.suggestions}
           </div>

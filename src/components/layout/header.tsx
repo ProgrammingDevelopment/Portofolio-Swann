@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { Code2, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
-import { useIsMobile } from '@/hooks/use-mobile'; // Assuming you have this hook
+import { useIsMobile } from '@/hooks/use-mobile'; 
 import { useState, useEffect } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -34,11 +35,16 @@ export function Header() {
         <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Code2 className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg">Informatics Engine</span>
+            <span className="font-bold text-lg">Swandaru Tirta</span>
           </Link>
-          {/* Placeholder for nav to match structure */}
-          <div className="w-8 h-8 md:hidden"></div>
-          <nav className="hidden md:flex items-center space-x-1 sm:space-x-2 md:space-x-4"></nav>
+          <div className="flex items-center gap-2">
+             {/* Placeholder for nav to match structure */}
+            <nav className="hidden md:flex items-center space-x-1 sm:space-x-2 md:space-x-4"></nav>
+            {/* Placeholder for ThemeToggle */}
+            <div className="w-10 h-10"></div>
+            {/* Placeholder for mobile menu trigger */}
+            <div className="w-8 h-8 md:hidden"></div>
+          </div>
         </div>
       </header>
     );
@@ -49,42 +55,50 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
           <Code2 className="h-6 w-6 text-primary" />
-          <span className="font-bold text-lg">Informatics Engine</span>
+          <span className="font-bold text-lg">Swandaru Tirta</span>
         </Link>
 
-        {isMobile ? (
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] sm:w-[320px]">
-              <nav className="flex flex-col space-y-4 mt-8">
+        <div className="flex items-center gap-2">
+          {isMobile ? (
+            <>
+              <ThemeToggle />
+              <Sheet open={open} onOpenChange={setOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+                  <nav className="flex flex-col space-y-4 mt-8">
+                    {navLinks.map((link) => (
+                      <SheetClose asChild key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                          onClick={() => setOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </>
+          ) : (
+            <>
+              <nav className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 overflow-x-auto">
                 {navLinks.map((link) => (
-                  <SheetClose asChild key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                      onClick={() => setOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  </SheetClose>
+                  <Button variant="ghost" asChild key={link.href}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </Button>
                 ))}
               </nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <nav className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 overflow-x-auto">
-            {navLinks.map((link) => (
-              <Button variant="ghost" asChild key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
-              </Button>
-            ))}
-          </nav>
-        )}
+              <ThemeToggle />
+            </>
+          )}
+        </div>
       </div>
     </header>
   );

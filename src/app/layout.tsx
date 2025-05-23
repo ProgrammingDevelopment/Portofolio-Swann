@@ -1,11 +1,12 @@
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google'; // Using Inter as a clean sans-serif font
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = Inter({
   subsets: ['latin'],
@@ -13,8 +14,8 @@ const fontSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Swandaru Tirta Sandhika - Portfolio',
-  description: 'Portfolio of Swandaru Tirta Sandhika, an Enthusiast Technology, Freelancer, and Web Developer.',
+  title: 'Swandaru Tirta - Portofolio',
+  description: 'Portfolio of Swandaru Tirta Sandhika, an Enthusiast Technology, Freelancer, and Prompt Learning.',
 };
 
 export default function RootLayout({
@@ -30,12 +31,19 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
